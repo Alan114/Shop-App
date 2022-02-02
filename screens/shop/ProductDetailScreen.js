@@ -1,24 +1,33 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { useSelector } from "react-redux";
 
-const ProductDetailScreen = ({ navigation }) => {
+const ProductDetailScreen = ({ route, navigation }) => {
+  const { productId } = route.params;
+  const selectedProduct = useSelector((state) =>
+    state.products.availableProducts.find((prod) => prod.id === productId)
+  );
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push("ProductDetails")}
-      />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
-      <Button
-        title="Update title"
-        onPress={() => navigation.setOptions({ title: "Updated!" })}
-      />
+    <View style={styles.content}>
+      <Text>{selectedProduct.title}</Text>
+      <Button title="Back to products" onPress={() => navigation.popToTop()} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export default ProductDetailScreen;
