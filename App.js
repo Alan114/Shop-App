@@ -2,9 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
-import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
+import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -18,9 +19,21 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={ProductsOverviewScreen} />
-          {/* <ProductsOverviewScreen /> */}
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={ProductsOverviewScreen}
+            options={{
+              title: "Products Overview",
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetailScreen}
+            options={{
+              title: "Product details",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
