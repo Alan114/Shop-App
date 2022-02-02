@@ -20,21 +20,25 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: Colors.primary,
+            },
+            headerTintColor: Colors.accent,
+            headerTitleStyle: {
+              fontFamily: "monospace",
+              fontWeight: "bold",
+              fontSize: 26,
+            },
+          }}
+        >
           <Stack.Screen
             name="Home"
             component={ProductsOverviewScreen}
             options={{
               title: "Products Overview",
-              headerStyle: {
-                backgroundColor: Colors.primary,
-              },
-              headerTintColor: Colors.accent,
-              headerTitleStyle: {
-                fontFamily: "monospace",
-                fontWeight: "bold",
-                fontSize: 26,
-              },
             }}
           />
           <Stack.Screen
