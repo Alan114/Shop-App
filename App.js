@@ -3,6 +3,8 @@ import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -10,10 +12,17 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
     <Provider store={store}>
-      <ProductsOverviewScreen />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={ProductsOverviewScreen} />
+          {/* <ProductsOverviewScreen /> */}
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
