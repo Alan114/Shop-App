@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 import Colors from "./constants/Colors";
@@ -24,9 +25,10 @@ export default function App() {
           initialRouteName="Home"
           screenOptions={{
             headerStyle: {
-              backgroundColor: Colors.primary,
+              backgroundColor: Platform.OS === "android" ? Colors.primary : "",
             },
-            headerTintColor: Colors.accent,
+            headerTintColor:
+              Platform.OS === "android" ? Colors.accent : Colors.primary,
             headerTitleStyle: {
               fontFamily: "monospace",
               fontWeight: "bold",
@@ -53,11 +55,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 28,
-    color: "white",
-    fontWeight: "bold",
-  },
-});
