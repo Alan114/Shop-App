@@ -1,20 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
+import { combineReducers, createStore } from "redux";
+import { Provider } from "react-redux";
+import productsReducer from "./store/reducers/products";
+import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
+
+const rootReducer = combineReducers({
+  products: productsReducer,
+});
+
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>SHOP APP</Text>
-    </View>
+    <Provider store={store}>
+      <ProductsOverviewScreen />
+    </Provider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "coral",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   text: {
     fontSize: 28,
     color: "white",
