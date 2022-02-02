@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
+import Colors from "./constants/Colors";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -25,6 +26,15 @@ export default function App() {
             component={ProductsOverviewScreen}
             options={{
               title: "Products Overview",
+              headerStyle: {
+                backgroundColor: Colors.primary,
+              },
+              headerTintColor: Colors.accent,
+              headerTitleStyle: {
+                fontFamily: "monospace",
+                fontWeight: "bold",
+                fontSize: 26,
+              },
             }}
           />
           <Stack.Screen

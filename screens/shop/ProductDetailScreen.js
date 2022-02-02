@@ -9,6 +9,14 @@ const ProductDetailScreen = ({ navigation }) => {
         title="Go to Details... again"
         onPress={() => navigation.push("ProductDetails")}
       />
+      <Button
+        title="Go back to first screen in stack"
+        onPress={() => navigation.popToTop()}
+      />
+      <Button
+        title="Update title"
+        onPress={() => navigation.setOptions({ title: "Updated!" })}
+      />
     </View>
   );
 };

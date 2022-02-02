@@ -1,4 +1,4 @@
 export default {
-  primary: "coral",
-  accent: "skyblue",
+  primary: "orangered",
+  accent: "whitesmoke",
 };
