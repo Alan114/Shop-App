@@ -18,6 +18,18 @@ const ProductDetailScreen = ({ route, navigation }) => {
   );
   const dispatch = useDispatch();
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          title="More info"
+          color="royalblue"
+          onPress={() => console.log("pressed")}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <ScrollView>
       <View style={styles.content}>
