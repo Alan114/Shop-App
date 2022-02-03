@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
+import cartReducer from "./store/reducers/cart";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Platform } from "react-native";
@@ -13,6 +14,7 @@ import * as Font from "expo-font";
 
 const rootReducer = combineReducers({
   products: productsReducer,
+  cart: cartReducer,
 });
 
 const store = createStore(rootReducer);
