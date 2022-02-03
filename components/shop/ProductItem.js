@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 14,
-    color: "#ddd",
+    color: "grey",
   },
   actions: {
     flexDirection: "row",

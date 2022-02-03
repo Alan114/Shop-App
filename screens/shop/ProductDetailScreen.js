@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useSelector } from "react-redux";
+import Colors from "../../constants/Colors";
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const { productId } = route.params;
@@ -15,10 +16,21 @@ const ProductDetailScreen = ({ route, navigation }) => {
     state.products.availableProducts.find((prod) => prod.id === productId)
   );
   return (
-    <View style={styles.content}>
-      <Text>{selectedProduct.title}</Text>
-      <Button title="Back to products" onPress={() => navigation.popToTop()} />
-    </View>
+    <ScrollView>
+      <View style={styles.content}>
+        <Image
+          source={{ uri: selectedProduct.imageUrl }}
+          style={styles.image}
+        />
+        <Button
+          title="Add to Cart"
+          color={Colors.primary}
+          onPress={() => navigation.popToTop()}
+        />
+        <Text style={styles.price}>${selectedProduct.price.toFixed(2)}</Text>
+        <Text style={styles.description}>{selectedProduct.description}</Text>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -27,6 +39,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  image: {
+    width: "90%",
+    height: 300,
+    marginVertical: 25,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+  },
+  price: {
+    marginVertical: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#888",
+  },
+  description: {
+    fontSize: 16,
+    marginHorizontal: 30,
+    textAlign: "center",
   },
 });
 
