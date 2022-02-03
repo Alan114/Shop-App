@@ -5,7 +5,7 @@ import productsReducer from "./store/reducers/products";
 import cartReducer from "./store/reducers/cart";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Platform } from "react-native";
+import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 import Colors from "./constants/Colors";
@@ -63,6 +63,13 @@ export default function App() {
             component={ProductsOverviewScreen}
             options={{
               title: "Products Overview",
+              headerRight: () => (
+                <Button
+                  title="Info"
+                  color="royalblue"
+                  onPress={() => alert("Additional information...")}
+                />
+              ),
             }}
           />
           <Stack.Screen
