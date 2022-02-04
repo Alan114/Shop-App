@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
+import CartScreen from "./screens/shop/CartScreen";
 import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
@@ -78,6 +79,13 @@ export default function App() {
             options={({ route }) => ({
               title: route.params.productTitle,
             })}
+          />
+          <Stack.Screen
+            name="CartScreen"
+            component={CartScreen}
+            options={{
+              title: "Product Cart",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
