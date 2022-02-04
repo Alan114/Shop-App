@@ -24,7 +24,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
         <Button
           title="More info"
           color="royalblue"
-          onPress={() => console.log("pressed")}
+          onPress={() => console.log("More information...")}
         />
       ),
     });

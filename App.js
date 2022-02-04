@@ -11,6 +11,8 @@ import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
+// import { HeaderButtons, Item } from "react-navigation-header-buttons";
+// import HeaderButton from "../../components/UI/HeaderButton";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -63,13 +65,11 @@ export default function App() {
             component={ProductsOverviewScreen}
             options={{
               title: "Products Overview",
-              headerRight: () => (
-                <Button
-                  title="Info"
-                  color="royalblue"
-                  onPress={() => alert("Additional information...")}
-                />
-              ),
+              // headerRight: () => (
+              //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+              //     <Item title="Header" iconName="md-cart" onPress={() => {}} />
+              //   </HeaderButtons>
+              // ),
             }}
           />
           <Stack.Screen
