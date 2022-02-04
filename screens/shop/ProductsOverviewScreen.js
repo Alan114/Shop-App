@@ -17,7 +17,6 @@ const ProductsOverviewScreen = (props) => {
           <Item
             title="Cart"
             iconName="md-cart"
-            color="royalblue"
             onPress={() => props.navigation.navigate("CartScreen")}
           />
         </HeaderButtons>
