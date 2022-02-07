@@ -6,10 +6,12 @@ import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import { createDrawerNavigator } from "react-navigation-drawer";
 import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 import CartScreen from "./screens/shop/CartScreen";
+import OrdersScreen from "./screens/shop/OrdersScreen";
 import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
@@ -32,6 +34,7 @@ const fetchFonts = () => {
 };
 
 const Stack = createNativeStackNavigator();
+// const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -90,6 +93,9 @@ export default function App() {
             }}
           />
         </Stack.Navigator>
+        {/* <Drawer.Navigator>
+          <Drawer.Screen name="OrdersScreen" component={OrdersScreen} />
+        </Drawer.Navigator> */}
       </NavigationContainer>
     </Provider>
   );
