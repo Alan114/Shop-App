@@ -6,7 +6,7 @@ import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { createDrawerNavigator } from "react-navigation-drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
@@ -34,7 +34,7 @@ const fetchFonts = () => {
 };
 
 const Stack = createNativeStackNavigator();
-// const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
