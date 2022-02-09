@@ -11,12 +11,13 @@ import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
 import CartScreen from "./screens/shop/CartScreen";
-import OrdersScreen from "./screens/shop/OrdersScreen";
+// import OrdersScreen from "./screens/shop/OrdersScreen";
+import DrawerNavigator from "./screens/shop/DrawerNavigator";
 import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
-// import { HeaderButtons, Item } from "react-navigation-header-buttons";
-// import HeaderButton from "../../components/UI/HeaderButton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "./components/UI/HeaderButton";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -34,7 +35,6 @@ const fetchFonts = () => {
 };
 
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -92,10 +92,8 @@ export default function App() {
               title: "Product Cart",
             }}
           />
+          <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
         </Stack.Navigator>
-        {/* <Drawer.Navigator>
-          <Drawer.Screen name="OrdersScreen" component={OrdersScreen} />
-        </Drawer.Navigator> */}
       </NavigationContainer>
     </Provider>
   );
