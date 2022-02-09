@@ -6,7 +6,7 @@ import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Button, Platform } from "react-native";
 import ProductsOverviewScreen from "./screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "./screens/shop/ProductDetailScreen";
@@ -53,7 +53,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="DrawerNavigator"
           screenOptions={{
             headerStyle: {
               backgroundColor: Platform.OS === "android" ? Colors.primary : "",
@@ -92,7 +92,21 @@ export default function App() {
               title: "Product Cart",
             }}
           />
-          <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+          <Stack.Screen
+            name="DrawerNavigator"
+            component={DrawerNavigator}
+            options={{
+              headerLeft: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                  <Item
+                    title="Menu"
+                    iconName="md-menu"
+                    onPress={() => navigation.toggleDrawer()}
+                  />
+                </HeaderButtons>
+              ),
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

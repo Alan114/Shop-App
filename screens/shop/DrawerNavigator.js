@@ -3,13 +3,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
 import OrdersScreen from "./OrdersScreen";
+import Colors from "../../constants/Colors";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = (props) => {
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === "android" ? Colors.primary : "",
@@ -31,7 +31,7 @@ const DrawerNavigator = () => {
               <Item
                 title="Menu"
                 iconName="md-menu"
-                onPress={() => navigation.toggleDrawer()}
+                onPress={() => props.navigation.toggleDrawer()}
               />
             </HeaderButtons>
           ),
