@@ -5,6 +5,7 @@ import ProductItem from "../../components/shop/ProductItem";
 import * as cartActions from "../../store/actions/cart";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
+import { DrawerActions } from "@react-navigation/native";
 
 const ProductsOverviewScreen = (props) => {
   const products = useSelector((state) => state.products.availableProducts);
@@ -17,7 +18,9 @@ const ProductsOverviewScreen = (props) => {
           <Item
             title="Menu"
             iconName="md-menu"
-            onPress={() => props.navigation.toggleDrawer()}
+            onPress={() =>
+              props.navigation.dispatch(DrawerActions.toggleDrawer())
+            }
           />
         </HeaderButtons>
       ),
