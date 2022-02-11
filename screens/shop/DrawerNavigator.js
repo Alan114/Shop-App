@@ -79,22 +79,14 @@ const DrawerNavigator = (props) => {
         },
       }}
     >
+      <Drawer.Screen name="Orders" component={OrdersScreen} />
       <Drawer.Screen
-        name="OrdersScreen"
-        component={OrdersScreen}
+        name="Products"
+        component={ProductsStackNavigator}
         options={{
-          headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-              <Item
-                title="Menu"
-                iconName="md-menu"
-                onPress={() => props.navigation.toggleDrawer()}
-              />
-            </HeaderButtons>
-          ),
+          headerShown: false,
         }}
       />
-      <Drawer.Screen name="Products" component={ProductsStackNavigator} />
     </Drawer.Navigator>
   );
 };

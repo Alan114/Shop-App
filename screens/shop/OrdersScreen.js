@@ -11,7 +11,7 @@ const OrdersScreen = (props) => {
         data={orders}
         renderItem={(itemData) => <Text>{itemData.item.totalAmount}</Text>}
       />
-      <Text>This is the orders screen</Text>
+      <Text>These are your orders</Text>
     </View>
   );
 };
