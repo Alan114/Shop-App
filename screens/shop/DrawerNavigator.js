@@ -9,6 +9,7 @@ import ProductDetailScreen from "./ProductDetailScreen";
 import CartScreen from "./CartScreen";
 import OrdersScreen from "./OrdersScreen";
 import Colors from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -79,14 +80,45 @@ const DrawerNavigator = (props) => {
         },
       }}
     >
-      <Drawer.Screen name="Orders" component={OrdersScreen} />
+      <Drawer.Screen
+        name="Your Orders"
+        component={OrdersScreen}
+        options={{
+          drawerIcon: (props) => (
+            <Ionicons
+              name={Platform.OS === "android" ? "md-list" : "ios-list"}
+              size={23}
+              color={props.color}
+            />
+          ),
+        }}
+      />
       <Drawer.Screen
         name="Products"
         component={ProductsStackNavigator}
         options={{
           headerShown: false,
+          drawerIcon: (props) => (
+            <Ionicons
+              name={Platform.OS === "android" ? "md-cart" : "ios-cart"}
+              size={23}
+              color={props.color}
+            />
+          ),
         }}
       />
+      {/* <Drawer.Screen
+        name="Admin"
+        component={AdminNavigator}
+        options={{
+          drawerIcon: (props) => (
+            <Ionicons 
+            name={Platform.OS === "android" ? "md-create" : "ios-create"} 
+            size={23} color={props.color} />
+            color={props.color}
+          ),
+        }}
+      /> */}
     </Drawer.Navigator>
   );
 };
