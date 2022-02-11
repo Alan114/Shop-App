@@ -10,9 +10,24 @@ import CartScreen from "./CartScreen";
 import OrdersScreen from "./OrdersScreen";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import UserProductsScreen from "../user/UserProductsScreen";
 
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
+export const AdminNavigator = () => {
+  return (
+    <ProductsStack.Navigator>
+      <ProductsStack.Screen
+        name="Your Products"
+        component={UserProductsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </ProductsStack.Navigator>
+  );
+};
 
 export const ProductsStackNavigator = () => {
   return (
@@ -107,18 +122,20 @@ const DrawerNavigator = (props) => {
           ),
         }}
       />
-      {/* <Drawer.Screen
+      <Drawer.Screen
         name="Admin"
         component={AdminNavigator}
         options={{
           drawerIcon: (props) => (
-            <Ionicons 
-            name={Platform.OS === "android" ? "md-create" : "ios-create"} 
-            size={23} color={props.color} />
-            color={props.color}
+            <Ionicons
+              name={Platform.OS === "android" ? "md-create" : "ios-create"}
+              size={23}
+              color={props.color}
+              color={props.color}
+            />
           ),
         }}
-      /> */}
+      />
     </Drawer.Navigator>
   );
 };
