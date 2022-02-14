@@ -10,7 +10,7 @@ const UserProductsScreen = (props) => {
   const dispatch = useDispatch();
 
   const handleEditProduct = (id) => {
-    props.navigation.navigate("Edit Product");
+    props.navigation.navigate("Edit Product", { productId: id });
   };
 
   return (
@@ -22,13 +22,15 @@ const UserProductsScreen = (props) => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onSelect={handleEditProduct}
+          onSelect={() => {
+            handleEditProduct(itemData.item.id);
+          }}
         >
           <Button
             color={Colors.primary}
             title="Edit"
             onPress={() => {
-              props.navigation.navigate("Edit Product");
+              handleEditProduct(itemData.item.id);
             }}
           />
           <Button
