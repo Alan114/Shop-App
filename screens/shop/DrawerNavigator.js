@@ -22,9 +22,11 @@ export const AdminNavigator = () => {
       <ProductsStack.Screen
         name="Your Products"
         component={UserProductsScreen}
-        options={{
-          headerShown: false,
-        }}
+        options={
+          {
+            // headerShown: false,
+          }
+        }
       />
       <ProductsStack.Screen name="Edit Product" component={EditProductScreen} />
     </ProductsStack.Navigator>
@@ -128,11 +130,21 @@ const DrawerNavigator = (props) => {
         name="Admin"
         component={AdminNavigator}
         options={{
+          headerRight: (props) => {
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+              <Item
+                title="Add"
+                iconName="md-create"
+                // onPress={props.navigation.navigate("Admin", {
+                //   screen: "Edit Product",
+                // })}
+              />
+            </HeaderButtons>;
+          },
           drawerIcon: (props) => (
             <Ionicons
               name={Platform.OS === "android" ? "md-create" : "ios-create"}
               size={23}
-              color={props.color}
               color={props.color}
             />
           ),
