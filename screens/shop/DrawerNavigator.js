@@ -11,6 +11,7 @@ import OrdersScreen from "./OrdersScreen";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen from "../user/UserProductsScreen";
+import EditProductScreen from "../user/EditProductScreen";
 
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,6 +26,7 @@ export const AdminNavigator = () => {
           headerShown: false,
         }}
       />
+      <ProductsStack.Screen name="Edit Product" component={EditProductScreen} />
     </ProductsStack.Navigator>
   );
 };
