@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, StyleSheet, FlatList } from "react-native";
+import { View, Button, StyleSheet, FlatList, Platform } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import ProductItem from "../../components/shop/ProductItem";
 import * as cartActions from "../../store/actions/cart";
@@ -36,7 +36,7 @@ const ProductsOverviewScreen = (props) => {
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
           <Item
             title="Cart"
-            iconName="md-cart"
+            iconName={Platform.OS === "android" ? "md-cart" : "ios-cart"}
             onPress={() => props.navigation.navigate("CartScreen")}
           />
         </HeaderButtons>
