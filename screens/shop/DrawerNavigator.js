@@ -138,7 +138,7 @@ const DrawerNavigator = (props) => {
         component={AdminNavigator}
         options={{
           // headerShown: false,
-          headerRight: (props) => {
+          headerRight: (props) => (
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
                 title="Add"
@@ -147,8 +147,8 @@ const DrawerNavigator = (props) => {
                 //   screen: "Edit Product",
                 // })}
               />
-            </HeaderButtons>;
-          },
+            </HeaderButtons>
+          ),
           drawerIcon: (props) => (
             <Ionicons
               name={Platform.OS === "android" ? "md-create" : "ios-create"}
