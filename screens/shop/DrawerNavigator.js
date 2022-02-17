@@ -143,9 +143,12 @@ const DrawerNavigator = (props) => {
               <Item
                 title="Add"
                 iconName="md-create"
-                // onPress={props.navigation.navigate("Admin", {
-                //   screen: "Edit Product",
-                // })}
+                onPress={() => {
+                  console.log("pressed");
+                  // props.navigation.navigate("Admin", {
+                  //   screen: "Edit Product",
+                  // });
+                }}
               />
             </HeaderButtons>
           ),
