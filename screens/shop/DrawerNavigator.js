@@ -22,11 +22,18 @@ export const AdminNavigator = () => {
       <ProductsStack.Screen
         name="Your Products"
         component={UserProductsScreen}
-        options={
-          {
-            // headerShown: false,
-          }
-        }
+        options={{
+          // headerShown: false,
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+              <Item
+                title="Header"
+                iconName="md-create"
+                onPress={() => console.log("pressed")}
+              />
+            </HeaderButtons>
+          ),
+        }}
       />
       <ProductsStack.Screen name="Edit Product" component={EditProductScreen} />
     </ProductsStack.Navigator>
@@ -130,6 +137,7 @@ const DrawerNavigator = (props) => {
         name="Admin"
         component={AdminNavigator}
         options={{
+          // headerShown: false,
           headerRight: (props) => {
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
