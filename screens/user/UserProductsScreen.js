@@ -18,14 +18,19 @@ const UserProductsScreen = (props) => {
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
       headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-          <Item
-            title="Add"
-            iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
-            onPress={() => props.navigation.navigate("Edit Product")}
-            color="black"
-          />
-        </HeaderButtons>
+        // <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        //   <Item
+        //     title="Add"
+        //     iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
+        //     onPress={() => props.navigation.navigate("Edit Product")}
+        //     color="black"
+        //   />
+        // </HeaderButtons>
+        <Button
+          title="Edit"
+          onPress={() => props.navigation.navigate("Edit Product")}
+          color="red"
+        />
       ),
     });
   }, [props.navigation]);
