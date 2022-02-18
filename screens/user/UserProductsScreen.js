@@ -25,11 +25,6 @@ const UserProductsScreen = (props) => {
             onPress={() => props.navigation.navigate("Edit Product")}
           />
         </HeaderButtons>
-        // <Button
-        //   title="Edit"
-        //   onPress={() => props.navigation.navigate("Edit Product")}
-        //   color="red"
-        // />
       ),
     });
   }, [props.navigation]);
