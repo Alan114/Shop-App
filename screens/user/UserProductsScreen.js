@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductItem from "../../components/shop/ProductItem";
 import Colors from "../../constants/Colors";
 import * as productActions from "../../store/actions/products";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../../components/UI/HeaderButton";
 
 const UserProductsScreen = (props) => {
   const userProducts = useSelector((state) => state.products.userProducts);
@@ -12,6 +14,21 @@ const UserProductsScreen = (props) => {
   const handleEditProduct = (id) => {
     props.navigation.navigate("Edit Product", { productId: id });
   };
+
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Add"
+            iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
+            onPress={() => props.navigation.navigate("Edit Product")}
+            color="black"
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [props.navigation]);
 
   return (
     <FlatList
