@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -18,7 +18,19 @@ const Drawer = createDrawerNavigator();
 
 export const AdminNavigator = () => {
   return (
-    <ProductsStack.Navigator>
+    <ProductsStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+        },
+        headerTintColor:
+          Platform.OS === "android" ? Colors.accent : Colors.primary,
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+          fontSize: 26,
+        },
+      }}
+    >
       <ProductsStack.Screen
         name="Your Products"
         component={UserProductsScreen}
