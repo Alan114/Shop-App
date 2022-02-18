@@ -8,10 +8,10 @@ import ProductsOverviewScreen from "./ProductsOverviewScreen";
 import ProductDetailScreen from "./ProductDetailScreen";
 import CartScreen from "./CartScreen";
 import OrdersScreen from "./OrdersScreen";
-import Colors from "../../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen from "../user/UserProductsScreen";
 import EditProductScreen from "../user/EditProductScreen";
+import Colors from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -50,7 +50,13 @@ export const AdminNavigator = () => {
           }
         }
       />
-      <ProductsStack.Screen name="Edit Product" component={EditProductScreen} />
+      <ProductsStack.Screen
+        name="Edit Product"
+        component={EditProductScreen}
+        options={({ route }) => ({
+          title: route.params === "productId" ? "Edit Product" : "Add Product",
+        })}
+      />
     </ProductsStack.Navigator>
   );
 };

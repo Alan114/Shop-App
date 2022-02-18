@@ -2,6 +2,7 @@ import React from "react";
 import { View, ScrollView, Text, TextInput, StyleSheet } from "react-native";
 
 const EditProductScreen = (props) => {
+  console.log(props.route.params);
   return (
     <ScrollView>
       <View style={styles.form}>
