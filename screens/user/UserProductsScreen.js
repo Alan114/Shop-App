@@ -6,6 +6,7 @@ import Colors from "../../constants/Colors";
 import * as productActions from "../../store/actions/products";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
+import { DrawerActions } from "@react-navigation/native";
 
 const UserProductsScreen = (props) => {
   const userProducts = useSelector((state) => state.products.userProducts);
@@ -17,6 +18,17 @@ const UserProductsScreen = (props) => {
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Menu"
+            iconName="md-menu"
+            onPress={() =>
+              props.navigation.dispatch(DrawerActions.toggleDrawer())
+            }
+          />
+        </HeaderButtons>
+      ),
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
           <Item

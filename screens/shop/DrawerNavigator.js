@@ -152,21 +152,21 @@ const DrawerNavigator = (props) => {
         name="Admin"
         component={AdminNavigator}
         options={{
-          // headerShown: false,
-          headerRight: (props) => (
-            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-              <Item
-                title="Add"
-                iconName="md-create"
-                onPress={() => {
-                  console.log("pressed");
-                  // props.navigation.navigate("Admin", {
-                  //   screen: "Edit Product",
-                  // });
-                }}
-              />
-            </HeaderButtons>
-          ),
+          headerShown: false,
+          // headerRight: (props) => (
+          //   <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          //     <Item
+          //       title="Add"
+          //       iconName="md-create"
+          //       onPress={() => {
+          //         console.log("pressed");
+          //         props.navigation.navigate("Admin", {
+          //           screen: "Edit Product",
+          //         });
+          //       }}
+          //     />
+          //   </HeaderButtons>
+          // ),
           drawerIcon: (props) => (
             <Ionicons
               name={Platform.OS === "android" ? "md-create" : "ios-create"}
