@@ -1,26 +1,84 @@
-import React from "react";
-import { View, ScrollView, Text, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  StyleSheet,
+  Platform,
+} from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../../components/UI/HeaderButton";
+import { useSelector } from "react-redux";
 
 const EditProductScreen = (props) => {
+  const prodId = props.route.params.productId;
+  const editedProduct = useSelector((state) =>
+    state.products.userProducts.find((prod) => prod.id === prodId)
+  );
+
+  const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ""
+  );
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ""
+  );
+
   console.log(props.route.params);
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Save"
+            iconName={
+              Platform.OS === "android" ? "md-checkmark" : "ios-ceckmark"
+            }
+            onPress={() => {}}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [props.navigation]);
+
   return (
     <ScrollView>
       <View style={styles.form}>
         <View style={styles.formControl}>
           <Text style={styles.label}>Title</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={title}
+            onChangeText={(text) => setTitle(text)}
+          />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={imageUrl}
+            onChangeText={(text) => setImageUrl(text)}
+          />
         </View>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Price</Text>
-          <TextInput style={styles.input} />
-        </View>
+        {editedProduct ? null : (
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Price</Text>
+            <TextInput
+              style={styles.input}
+              value={price}
+              onChangeText={(text) => setPrice(text)}
+            />
+          </View>
+        )}
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
+          />
         </View>
       </View>
     </ScrollView>
