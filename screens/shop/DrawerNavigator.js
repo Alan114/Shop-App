@@ -16,7 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-export const AdminNavigator = () => {
+export const AdminNavigator = ({ route }) => {
   return (
     <ProductsStack.Navigator
       screenOptions={{
@@ -54,8 +54,7 @@ export const AdminNavigator = () => {
         name="Edit Product"
         component={EditProductScreen}
         options={({ route }) => ({
-          title:
-            route.params.productId === "p1" ? "Edit Product" : "Add Product",
+          title: route.params.productId ? "Edit Product" : "Add Product",
         })}
       />
     </ProductsStack.Navigator>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
   ScrollView,
@@ -12,19 +12,27 @@ import CustomHeaderButton from "../../components/UI/HeaderButton";
 import { useSelector } from "react-redux";
 
 const EditProductScreen = (props) => {
-  const prodId = props.route.params.productId;
-  const editedProduct = useSelector((state) =>
-    state.products.userProducts.find((prod) => prod.id === prodId)
-  );
+  // const prodId = props.route.params.productId;
+  // const editedProduct = useSelector((state) =>
+  //   state.products.userProducts.find((prod) => prod.id === prodId)
+  // );
 
-  const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
-  const [imageUrl, setImageUrl] = useState(
-    editedProduct ? editedProduct.imageUrl : ""
-  );
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState(
-    editedProduct ? editedProduct.description : ""
-  );
+  // const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
+  // const [imageUrl, setImageUrl] = useState(
+  //   editedProduct ? editedProduct.imageUrl : ""
+  // );
+  // const [price, setPrice] = useState("");
+  // const [description, setDescription] = useState(
+  //   editedProduct ? editedProduct.description : ""
+  // );
+
+  // const submitHandler = useCallback(() => {
+  //   console.log("Submitting!");
+  // });
+
+  // useEffect(() => {
+  //   props.navigation.setParams({ submit: submitHandler });
+  // });
 
   console.log(props.route.params);
   React.useLayoutEffect(() => {
@@ -34,7 +42,7 @@ const EditProductScreen = (props) => {
           <Item
             title="Save"
             iconName={
-              Platform.OS === "android" ? "md-checkmark" : "ios-ceckmark"
+              Platform.OS === "android" ? "md-checkmark" : "ios-checkmark"
             }
             onPress={() => {}}
           />
@@ -50,19 +58,19 @@ const EditProductScreen = (props) => {
           <Text style={styles.label}>Title</Text>
           <TextInput
             style={styles.input}
-            value={title}
-            onChangeText={(text) => setTitle(text)}
+            // value={title}
+            // onChangeText={(text) => setTitle(text)}
           />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
           <TextInput
             style={styles.input}
-            value={imageUrl}
-            onChangeText={(text) => setImageUrl(text)}
+            // value={imageUrl}
+            // onChangeText={(text) => setImageUrl(text)}
           />
         </View>
-        {editedProduct ? null : (
+        {/* {editedProduct ? null : (
           <View style={styles.formControl}>
             <Text style={styles.label}>Price</Text>
             <TextInput
@@ -71,13 +79,13 @@ const EditProductScreen = (props) => {
               onChangeText={(text) => setPrice(text)}
             />
           </View>
-        )}
+        )} */}
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput
             style={styles.input}
-            value={description}
-            onChangeText={(text) => setDescription(text)}
+            // value={description}
+            // onChangeText={(text) => setDescription(text)}
           />
         </View>
       </View>
