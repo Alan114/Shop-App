@@ -12,27 +12,27 @@ import CustomHeaderButton from "../../components/UI/HeaderButton";
 import { useSelector } from "react-redux";
 
 const EditProductScreen = (props) => {
-  // const prodId = props.route.params.productId;
-  // const editedProduct = useSelector((state) =>
-  //   state.products.userProducts.find((prod) => prod.id === prodId)
-  // );
+  const prodId = props.route.params ? props.route.params.productId : null;
+  const editedProduct = useSelector((state) =>
+    state.products.userProducts.find((prod) => prod.id === prodId)
+  );
 
-  // const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
-  // const [imageUrl, setImageUrl] = useState(
-  //   editedProduct ? editedProduct.imageUrl : ""
-  // );
-  // const [price, setPrice] = useState("");
-  // const [description, setDescription] = useState(
-  //   editedProduct ? editedProduct.description : ""
-  // );
+  const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ""
+  );
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ""
+  );
 
-  // const submitHandler = useCallback(() => {
-  //   console.log("Submitting!");
-  // });
+  const submitHandler = useCallback(() => {
+    console.log("Submitting!");
+  });
 
   // useEffect(() => {
   //   props.navigation.setParams({ submit: submitHandler });
-  // });
+  // }, [submitHandler]);
 
   console.log(props.route.params);
   React.useLayoutEffect(() => {
@@ -44,7 +44,9 @@ const EditProductScreen = (props) => {
             iconName={
               Platform.OS === "android" ? "md-checkmark" : "ios-checkmark"
             }
-            onPress={() => {}}
+            onPress={() => {
+              submitHandler;
+            }}
           />
         </HeaderButtons>
       ),

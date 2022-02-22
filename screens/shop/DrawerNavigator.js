@@ -54,7 +54,7 @@ export const AdminNavigator = ({ route }) => {
         name="Edit Product"
         component={EditProductScreen}
         options={({ route }) => ({
-          title: route.params.productId ? "Edit Product" : "Add Product",
+          title: route.params ? "Edit Product" : "Add Product",
         })}
       />
     </ProductsStack.Navigator>
