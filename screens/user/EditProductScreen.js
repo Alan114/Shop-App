@@ -28,14 +28,15 @@ const EditProductScreen = (props) => {
 
   const submitHandler = useCallback(() => {
     console.log("Submitting!");
-  });
+  }, []);
 
-  // useEffect(() => {
-  //   props.navigation.setParams({ submit: submitHandler });
-  // }, [submitHandler]);
+  useEffect(() => {
+    props.navigation.setParams({ submit: submitHandler });
+  }, [submitHandler]);
 
   console.log(props.route.params);
   React.useLayoutEffect(() => {
+    const submitFn = props.route.params ? props.route.params.submit : null;
     props.navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
@@ -45,7 +46,7 @@ const EditProductScreen = (props) => {
               Platform.OS === "android" ? "md-checkmark" : "ios-checkmark"
             }
             onPress={() => {
-              submitHandler;
+              submitFn;
             }}
           />
         </HeaderButtons>
@@ -60,19 +61,19 @@ const EditProductScreen = (props) => {
           <Text style={styles.label}>Title</Text>
           <TextInput
             style={styles.input}
-            // value={title}
-            // onChangeText={(text) => setTitle(text)}
+            value={title}
+            onChangeText={(text) => setTitle(text)}
           />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
           <TextInput
             style={styles.input}
-            // value={imageUrl}
-            // onChangeText={(text) => setImageUrl(text)}
+            value={imageUrl}
+            onChangeText={(text) => setImageUrl(text)}
           />
         </View>
-        {/* {editedProduct ? null : (
+        {editedProduct ? null : (
           <View style={styles.formControl}>
             <Text style={styles.label}>Price</Text>
             <TextInput
@@ -81,13 +82,13 @@ const EditProductScreen = (props) => {
               onChangeText={(text) => setPrice(text)}
             />
           </View>
-        )} */}
+        )}
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput
             style={styles.input}
-            // value={description}
-            // onChangeText={(text) => setDescription(text)}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
           />
         </View>
       </View>
