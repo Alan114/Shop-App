@@ -30,13 +30,7 @@ const EditProductScreen = (props) => {
     console.log("Submitting!");
   }, []);
 
-  useEffect(() => {
-    props.navigation.setParams({ submit: submitHandler });
-  }, [submitHandler]);
-
-  console.log(props.route.params);
   React.useLayoutEffect(() => {
-    const submitFn = props.route.params ? props.route.params.submit : null;
     props.navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
@@ -45,14 +39,12 @@ const EditProductScreen = (props) => {
             iconName={
               Platform.OS === "android" ? "md-checkmark" : "ios-checkmark"
             }
-            onPress={() => {
-              submitFn;
-            }}
+            onPress={submitHandler}
           />
         </HeaderButtons>
       ),
     });
-  }, [props.navigation]);
+  }, [props.navigation, submitHandler]);
 
   return (
     <ScrollView>
