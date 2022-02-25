@@ -11,24 +11,12 @@ import { useSelector, useDispatch } from "react-redux";
 import * as cartActions from "../../store/actions/cart";
 import Colors from "../../constants/Colors";
 
-const ProductDetailScreen = ({ route, navigation }) => {
+const ProductDetailScreen = ({ route }) => {
   const { productId } = route.params;
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((prod) => prod.id === productId)
   );
   const dispatch = useDispatch();
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Button
-          title="More info"
-          color="royalblue"
-          onPress={() => console.log("More information...")}
-        />
-      ),
-    });
-  }, [navigation]);
 
   return (
     <ScrollView>

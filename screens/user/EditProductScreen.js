@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   ScrollView,
@@ -9,13 +9,16 @@ import {
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as productsActions from "../../store/actions/products";
 
 const EditProductScreen = (props) => {
   const prodId = props.route.params ? props.route.params.productId : null;
   const editedProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   );
+
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
   const [imageUrl, setImageUrl] = useState(
@@ -28,7 +31,16 @@ const EditProductScreen = (props) => {
 
   const submitHandler = useCallback(() => {
     console.log("Submitting!");
-  }, []);
+    if (editedProduct) {
+      dispatch(
+        productsActions.updateProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        productsActions.createProduct(title, description, imageUrl, +price)
+      );
+    }
+  }, [dispatch, prodId, title, description, imageUrl, price]);
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
