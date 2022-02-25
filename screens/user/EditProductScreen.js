@@ -30,7 +30,6 @@ const EditProductScreen = (props) => {
   );
 
   const submitHandler = useCallback(() => {
-    console.log("Submitting!");
     if (editedProduct) {
       dispatch(
         productsActions.updateProduct(prodId, title, description, imageUrl)
@@ -40,6 +39,7 @@ const EditProductScreen = (props) => {
         productsActions.createProduct(title, description, imageUrl, +price)
       );
     }
+    props.navigation.goBack();
   }, [dispatch, prodId, title, description, imageUrl, price]);
 
   React.useLayoutEffect(() => {
