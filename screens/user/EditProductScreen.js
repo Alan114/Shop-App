@@ -12,6 +12,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
 import { useSelector, useDispatch } from "react-redux";
 import * as productsActions from "../../store/actions/products";
+import Input from "../../components/UI/Input";
 
 const FORM_UPDATE = "FORM_UPDATE";
 
@@ -158,56 +159,34 @@ const EditProductScreen = (props) => {
   return (
     <ScrollView>
       <View style={styles.form}>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Title</Text>
-          <TextInput
-            style={styles.input}
-            // value={title}
-            value={formState.inputValues.title}
-            onChangeText={handleTextChange.bind(this, "title")}
-            keyboardType="default"
-            autoCapitalize="sentences"
-            autoCorrect
-            onEndEditing={() => console.log("onEndEditing")}
-          />
-          {/* {!titleIsValid && <Text>Please enter a valid title!</Text>} */}
-          {!formState.inputValidities.title && (
-            <Text>Please enter a valid title!</Text>
-          )}
-        </View>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Image URL</Text>
-          <TextInput
-            style={styles.input}
-            // value={imageUrl}
-            value={formState.inputValues.imageUrl}
-            // onChangeText={(text) => setImageUrl(text)}
-            onChangeText={handleTextChange.bind(this, "imageUrl")}
-          />
-        </View>
+        <Input
+          label="Title"
+          errorText="Please enter a valid title!"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          autoCorrect
+        />
+        <Input
+          label="Image Url"
+          errorText="Please enter a valid image url!"
+          keyboardType="default"
+        />
+
         {editedProduct ? null : (
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Price</Text>
-            <TextInput
-              style={styles.input}
-              // value={price}
-              value={formState.inputValues.price}
-              // onChangeText={(text) => setPrice(text)}
-              onChangeText={handleTextChange.bind(this, "price")}
-              keyboardType="decimal-pad"
-            />
-          </View>
-        )}
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Description</Text>
-          <TextInput
-            style={styles.input}
-            // value={description}
-            value={formState.inputValues.description}
-            // onChangeText={(text) => setDescription(text)}
-            onChangeText={handleTextChange.bind(this, "description")}
+          <Input
+            label="Price"
+            errorText="Please enter a valid price!"
+            keyboardType="decimal-pad"
           />
-        </View>
+        )}
+        <Input
+          label="Description"
+          errorText="Please enter a valid description!"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          multiline
+          numberOfLines={3}
+        />
       </View>
     </ScrollView>
   );
@@ -216,20 +195,6 @@ const EditProductScreen = (props) => {
 const styles = StyleSheet.create({
   form: {
     margin: 20,
-  },
-  formControl: {
-    width: "100%",
-  },
-  label: {
-    fontSize: 20,
-    marginVertical: 8,
-    fontFamily: "open-sans-bold",
-  },
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: "gray",
-    borderBottomWidth: 1,
   },
 });
 
