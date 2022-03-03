@@ -1,13 +1,5 @@
-import React, { useState, useCallback, useReducer } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  TextInput,
-  StyleSheet,
-  Platform,
-  Alert,
-} from "react-native";
+import React, { useCallback, useReducer } from "react";
+import { View, ScrollView, StyleSheet, Platform, Alert } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
 import { useSelector, useDispatch } from "react-redux";
@@ -63,35 +55,6 @@ const EditProductScreen = (props) => {
     formIsValid: editedProduct ? true : false,
   });
 
-  // const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
-  // const [titleIsValid, setTitleIsValid] = useState(false);
-  // const [imageUrl, setImageUrl] = useState(
-  //   editedProduct ? editedProduct.imageUrl : ""
-  // );
-  // const [price, setPrice] = useState("");
-  // const [description, setDescription] = useState(
-  //   editedProduct ? editedProduct.description : ""
-  // );
-
-  // const submitHandler = useCallback(() => {
-  //   if (!titleIsValid) {
-  //     Alert.alert("Wrong input!", "Please check the errors in the form!", [
-  //       { text: "Okay" },
-  //     ]);
-  //     return;
-  //   }
-  //   if (editedProduct) {
-  //     dispatch(
-  //       productsActions.updateProduct(prodId, title, description, imageUrl)
-  //     );
-  //   } else {
-  //     dispatch(
-  //       productsActions.createProduct(title, description, imageUrl, +price)
-  //     );
-  //   }
-  //   props.navigation.goBack();
-  // }, [dispatch, prodId, title, description, imageUrl, price, titleIsValid]);
-
   const submitHandler = useCallback(() => {
     if (!formState.formIsValid) {
       Alert.alert("Wrong input!", "Please check the errors in the form!", [
@@ -121,24 +84,17 @@ const EditProductScreen = (props) => {
     props.navigation.goBack();
   }, [dispatch, prodId, formState]);
 
-  const handleTextChange = (inputIdentifier, text) => {
-    let isValid = false;
-    if (text.trim().length > 0) {
-      isValid = true;
-    }
-    dispatchFormState({
-      type: FORM_UPDATE,
-      value: text,
-      isValid: isValid,
-      input: inputIdentifier,
-    });
-    // if (text.trim().length === 0) {
-    //   setTitleIsValid(false);
-    // } else {
-    //   setTitleIsValid(true);
-    // }
-    // setTitle(text);
-  };
+  const handleInputChange = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -160,32 +116,52 @@ const EditProductScreen = (props) => {
     <ScrollView>
       <View style={styles.form}>
         <Input
+          id="title"
           label="Title"
           errorText="Please enter a valid title!"
           keyboardType="default"
           autoCapitalize="sentences"
           autoCorrect
+          onInputChange={handleInputChange}
+          initialValue={editedProduct ? editedProduct.title : ""}
+          initiallyValid={!!editedProduct}
+          required
         />
         <Input
+          id="imageUrl"
           label="Image Url"
           errorText="Please enter a valid image url!"
           keyboardType="default"
+          onInputChange={handleInputChange}
+          initialValue={editedProduct ? editedProduct.imageUrl : ""}
+          initiallyValid={!!editedProduct}
+          required
         />
 
         {editedProduct ? null : (
           <Input
+            id="price"
             label="Price"
             errorText="Please enter a valid price!"
             keyboardType="decimal-pad"
+            onInputChange={handleInputChange}
+            required
+            min={0.1}
           />
         )}
         <Input
+          id="description"
           label="Description"
           errorText="Please enter a valid description!"
           keyboardType="default"
           autoCapitalize="sentences"
           multiline
           numberOfLines={3}
+          onInputChange={handleInputChange}
+          initialValue={editedProduct ? editedProduct.description : ""}
+          initiallyValid={!!editedProduct}
+          required
+          minLength={5}
         />
       </View>
     </ScrollView>
