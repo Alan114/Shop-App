@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useReducer } from "react";
+import React, { useState, useEffect, useCallback, useReducer } from "react";
 import {
   View,
   ScrollView,
@@ -67,6 +67,12 @@ const EditProductScreen = (props) => {
     formIsValid: editedProduct ? true : false,
   });
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert("An error occurred!", error, [{ text: "Okay" }]);
+    }
+  }, [error]);
+
   const submitHandler = useCallback(async () => {
     if (!formState.formIsValid) {
       Alert.alert("Wrong input!", "Please check the errors in the form!", [
@@ -99,7 +105,6 @@ const EditProductScreen = (props) => {
     } catch (err) {
       setError(err.message);
     }
-
     setIsLoading(false);
     props.navigation.goBack();
   }, [dispatch, prodId, formState]);
