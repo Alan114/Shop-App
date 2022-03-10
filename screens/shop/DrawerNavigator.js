@@ -10,11 +10,37 @@ import CartScreen from "./CartScreen";
 import OrdersScreen from "./OrdersScreen";
 import UserProductsScreen from "../user/UserProductsScreen";
 import EditProductScreen from "../user/EditProductScreen";
+import AuthScreen from "../user/AuthScreen";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
 const ProductsStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+const AuthStack = createNativeStackNavigator();
+
+export const AuthNavigator = () => {
+  return (
+    <AuthStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+        },
+        headerTintColor:
+          Platform.OS === "android" ? Colors.accent : Colors.primary,
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+          fontSize: 26,
+        },
+      }}
+    >
+      <AuthStack.Screen
+        name="AuthScreen"
+        component={AuthScreen}
+        options={() => ({ title: "Authenticate" })}
+      />
+    </AuthStack.Navigator>
+  );
+};
 
 export const AdminNavigator = ({ route }) => {
   return (
@@ -159,20 +185,19 @@ const DrawerNavigator = (props) => {
         component={AdminNavigator}
         options={{
           headerShown: false,
-          // headerRight: (props) => (
-          //   <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-          //     <Item
-          //       title="Add"
-          //       iconName="md-create"
-          //       onPress={() => {
-          //         console.log("pressed");
-          //         props.navigation.navigate("Admin", {
-          //           screen: "Edit Product",
-          //         });
-          //       }}
-          //     />
-          //   </HeaderButtons>
-          // ),
+          drawerIcon: (props) => (
+            <Ionicons
+              name={Platform.OS === "android" ? "md-create" : "ios-create"}
+              size={23}
+              color={props.color}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Authenticate"
+        component={AuthNavigator}
+        options={{
           drawerIcon: (props) => (
             <Ionicons
               name={Platform.OS === "android" ? "md-create" : "ios-create"}
