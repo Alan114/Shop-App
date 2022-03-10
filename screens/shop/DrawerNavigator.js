@@ -36,7 +36,9 @@ export const AuthNavigator = () => {
       <AuthStack.Screen
         name="AuthScreen"
         component={AuthScreen}
-        options={() => ({ title: "Authenticate" })}
+        options={{
+          headerShown: false,
+        }}
       />
     </AuthStack.Navigator>
   );
