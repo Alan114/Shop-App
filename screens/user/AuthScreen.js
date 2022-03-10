@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useCallback } from "react";
+import React, { useState, useEffect, useReducer, useCallback } from "react";
 import {
   View,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Button,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import Input from "../../components/UI/Input";
 import Card from "../../components/UI/Card";
@@ -41,6 +42,7 @@ const formReducer = (state, action) => {
 
 const AuthScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const [isSignUp, setIsSignUp] = useState(false);
   const dispatch = useDispatch();
 
@@ -56,6 +58,12 @@ const AuthScreen = (props) => {
     formIsValid: false,
   });
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert("An Error Occurred!", error, [{ text: "Okay" }]);
+    }
+  }, [error]);
+
   const handleAuth = async () => {
     let action;
     if (isSignUp) {
@@ -69,8 +77,13 @@ const AuthScreen = (props) => {
         formState.inputValues.password
       );
     }
+    setError(null);
     setIsLoading(true);
-    await dispatch(action);
+    try {
+      await dispatch(action);
+    } catch (err) {
+      setError(err.message);
+    }
     setIsLoading(false);
   };
 
