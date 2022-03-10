@@ -62,21 +62,6 @@ export const AdminNavigator = ({ route }) => {
       <ProductsStack.Screen
         name="Your Products"
         component={UserProductsScreen}
-        options={
-          {
-            // headerShown: false,
-            // headerRight: () => (
-            //   <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-            //     <Item
-            //       title="Header"
-            //       iconName="md-create"
-            //       onPress={() => console.log("pressed")}
-            //       color="red"
-            //     />
-            //   </HeaderButtons>
-            // ),
-          }
-        }
       />
       <ProductsStack.Screen
         name="Edit Product"
@@ -142,7 +127,7 @@ export const ProductsStackNavigator = () => {
 const DrawerNavigator = (props) => {
   return (
     <Drawer.Navigator
-      initialRouteName="Products"
+      initialRouteName="Authenticate"
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === "android" ? Colors.primary : "",
