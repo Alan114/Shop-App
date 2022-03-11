@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
+import {
+  FlatList,
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import OrderItem from "../../components/shop/OrderItem";
 import * as ordersActions from "../../store/actions/orders";
@@ -22,6 +28,14 @@ const OrdersScreen = (props) => {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+
+  if (orders.length === 0) {
+    return (
+      <View style={styles.centered}>
+        <Text>No orders found. Order some products?</Text>
       </View>
     );
   }
