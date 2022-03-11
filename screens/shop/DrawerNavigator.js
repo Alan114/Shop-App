@@ -1,9 +1,12 @@
 import React from "react";
-import { Platform, Button } from "react-native";
+import { Platform, View, Button, SafeAreaView } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import CustomHeaderButton from "../../components/UI/HeaderButton";
+import {
+  createDrawerNavigator,
+  DrawerItem,
+  DrawerItemList,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
 import ProductsOverviewScreen from "./ProductsOverviewScreen";
 import ProductDetailScreen from "./ProductDetailScreen";
 import CartScreen from "./CartScreen";
@@ -41,7 +44,7 @@ export const AuthNavigator = () => {
           headerShown: false,
         }}
       />
-      <AuthStack.Screen name="StartupScreen" component={StartupScreen} />
+      {/* <AuthStack.Screen name="StartupScreen" component={StartupScreen} /> */}
     </AuthStack.Navigator>
   );
 };
@@ -97,15 +100,6 @@ export const ProductsStackNavigator = () => {
         component={ProductsOverviewScreen}
         options={{
           title: "Products Overview",
-          // headerRight: () => (
-          //   <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-          //     <Item
-          //       title="Header"
-          //       iconName="md-cart"
-          //       onPress={() => console.log("pressed")}
-          //     />
-          //   </HeaderButtons>
-          // ),
         }}
       />
       <ProductsStack.Screen
@@ -139,6 +133,21 @@ const DrawerNavigator = (props) => {
         headerTitleStyle: {
           fontFamily: "open-sans-bold",
           fontSize: 26,
+        },
+        drawerContent: (props) => {
+          return (
+            <DrawerContentScrollView {...props}>
+              <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
+                <DrawerItemList {...props} />
+                <DrawerItem label="Help" />
+                {/* <Button
+                  title="Logout"
+                  color={Colors.primary}
+                  onPress={() => {}}
+                /> */}
+              </SafeAreaView>
+            </DrawerContentScrollView>
+          );
         },
       }}
     >
