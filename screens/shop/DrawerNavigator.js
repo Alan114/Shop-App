@@ -11,6 +11,7 @@ import OrdersScreen from "./OrdersScreen";
 import UserProductsScreen from "../user/UserProductsScreen";
 import EditProductScreen from "../user/EditProductScreen";
 import AuthScreen from "../user/AuthScreen";
+import StartupScreen from "../StartupScreen";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -40,6 +41,7 @@ export const AuthNavigator = () => {
           headerShown: false,
         }}
       />
+      <AuthStack.Screen name="StartupScreen" component={StartupScreen} />
     </AuthStack.Navigator>
   );
 };
